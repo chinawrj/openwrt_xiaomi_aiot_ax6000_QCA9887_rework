@@ -1,0 +1,643 @@
+=== EXTRA ===
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000]     PCI I/O : 0xffffffbffae00000 - 0xffffffbffbe00000   (    16 MB)
+[    0.202343] PCI: CLS 0 bytes, default 128
+[    0.219227] 80000000.pci supply vdda not found, using dummy regulator
+[    0.219307] 80000000.pci supply vdda_phy not found, using dummy regulator
+[    0.219353] 80000000.pci supply vdda_refclk not found, using dummy regulator
+[    0.220147] PCI host bridge /soc/pci@80000000 ranges:
+[    0.469906] qcom-pcie 80000000.pci: link up
+[    0.470139] qcom-pcie 80000000.pci: PCI host bridge to bus 0000:00
+[    0.470157] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    0.470171] pci_bus 0000:00: root bus resource [io  0x0000-0xfffff] (bus address [0x80200000-0x802fffff])
+[    0.470182] pci_bus 0000:00: root bus resource [mem 0x80300000-0x902fffff]
+[    0.470224] pci 0000:00:00.0: [17cb:1004] type 01 class 0x060400
+[    0.470262] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x00000fff 64bit]
+[    0.470335] pci 0000:00:00.0: PME# supported from
+[    0.470588] pci 0000:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    0.470819] pci 0000:01:00.0: [168c:0050] type 00 class 0x028000
+[    0.471015] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x001fffff 64bit]
+[    0.471202] pci 0000:01:00.0: reg 0x30: [mem 0x00000000-0x0000ffff pref]
+[    0.471477] pci 0000:01:00.0: supports D1
+[    0.471487] pci 0000:01:00.0: PME# supported from
+[    0.471818] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+[    0.471868] pci 0000:00:00.0: BAR 8: assigned [mem 0x80300000-0x805fffff]
+[    0.471886] pci 0000:00:00.0: BAR 9: assigned [mem 0x80600000-0x807fffff 64bit pref]
+[    0.471901] pci 0000:00:00.0: BAR 0: assigned [mem 0x80800000-0x80800fff 64bit]
+[    0.471918] pci 0000:00:00.0: BAR 7: assigned [io  0x1000-0x1fff]
+[    0.471933] pci 0000:01:00.0: BAR 0: assigned [mem 0x80400000-0x805fffff 64bit]
+[    0.471994] pci 0000:01:00.0: BAR 6: assigned [mem 0x80300000-0x8030ffff pref]
+[    0.472005] pci 0000:00:00.0: PCI bridge to [bus 01]
+[    0.472015] pci 0000:00:00.0:   bridge window [io  0x1000-0x1fff]
+[    0.472027] pci 0000:00:00.0:   bridge window [mem 0x80300000-0x805fffff]
+[    0.472038] pci 0000:00:00.0:   bridge window [mem 0x80600000-0x807fffff 64bit pref]
+[    0.472110] PCIe: RC0 enabled during bootup
+[    0.472410] a0000000.pci supply vdda not found, using dummy regulator
+[    0.472513] a0000000.pci supply vdda_phy not found, using dummy regulator
+[    0.472561] a0000000.pci supply vdda_refclk not found, using dummy regulator
+[    0.473354] PCI host bridge /soc/pci@a0000000 ranges:
+[    0.719923] qcom-pcie a0000000.pci: link up
+[    0.720128] qcom-pcie a0000000.pci: PCI host bridge to bus 0001:00
+[    0.720147] pci_bus 0001:00: root bus resource [bus 00-ff]
+[    0.720161] pci_bus 0001:00: root bus resource [io  0x100000-0x1fffff] (bus address [0xa0200000-0xa02fffff])
+[    0.720172] pci_bus 0001:00: root bus resource [mem 0xa0300000-0xb02fffff]
+[    0.720208] pci 0001:00:00.0: [17cb:1004] type 01 class 0x060400
+[    0.720240] pci 0001:00:00.0: reg 0x10: [mem 0x00000000-0x00000fff 64bit]
+[    0.720306] pci 0001:00:00.0: PME# supported from
+[    0.720568] pci 0001:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    0.720772] pci 0001:01:00.0: [17cb:1104] type 00 class 0x028000
+[    0.720913] pci 0001:01:00.0: reg 0x10: [mem 0x00000000-0x001fffff 64bit]
+[    0.721266] pci 0001:01:00.0: PME# supported from
+[    0.721519] pci_bus 0001:01: busn_res: [bus 01-ff] end is updated to 01
+[    0.721563] pci 0001:00:00.0: BAR 8: assigned [mem 0xa0400000-0xa05fffff]
+[    0.721579] pci 0001:00:00.0: BAR 9: assigned [mem 0xa0600000-0xa07fffff 64bit pref]
+[    0.721593] pci 0001:00:00.0: BAR 0: assigned [mem 0xa0300000-0xa0300fff 64bit]
+[    0.721610] pci 0001:00:00.0: BAR 7: assigned [io  0x100000-0x100fff]
+[    0.721625] pci 0001:01:00.0: BAR 0: assigned [mem 0xa0400000-0xa05fffff 64bit]
+[    0.721671] pci 0001:00:00.0: PCI bridge to [bus 01]
+[    0.721682] pci 0001:00:00.0:   bridge window [io  0x100000-0x100fff]
+[    0.721693] pci 0001:00:00.0:   bridge window [mem 0xa0400000-0xa05fffff]
+[    0.721704] pci 0001:00:00.0:   bridge window [mem 0xa0600000-0xa07fffff 64bit pref]
+[    0.721771] PCIe: RC1 enabled during bootup
+[    2.086824] libphy: Fixed MDIO Bus: probed
+[    2.308739] qca-mdio 88000.mdio: Could not find phy-reset-gpio
+[    2.308930] libphy: qca_mdio: probed
+[    2.314157] qca-mdio 88000.mdio: qca-mdio driver was registered
+[    2.757682] qca-mdio 90000.mdio: Could not find phy-reset-gpio
+[    2.757859] libphy: qca_mdio: probed
+[    2.764139] qca-mdio 90000.mdio: qca-mdio driver was registered
+[    3.239168] Netfilter messages via NETLINK v0.30.
+[   13.751403] ssdk_dt_parse_phy_info[659]:INFO:[PORT 2] port_mac_sel = QGMAC_PORT
+[   13.757721] ssdk_dt_parse_phy_info[678]:INFO:port2's phy-reset-gpio is GPIO39
+[   13.772096] ssdk_dt_parse_uniphy[332]:INFO:ess-uniphy DT exist!
+[   16.204257] mpge_phy_api_ops_init[1089]:INFO:qca probe mpge phy driver succeeded!
+[   16.210851] mpge_phy_dac_set[917]:INFO:phy mdac is set as 0x10
+[   16.217808] mpge_phy_dac_set[929]:INFO:phy edac is set as 0x10
+[   16.223597] qca808x_phy_api_ops_init[2208]:INFO:qca probe qca808x phy driver succeeded!
+[   16.230337] regi_init[3947]:INFO:Initializing SCOMPHY!
+[   17.362416] _adpt_mp_uniphy_clk_output_set[266]:INFO:set 50Mhz clk for qca8081
+[   17.362442] _adpt_mp_uniphy_clk_output_ctrl_set[236]:INFO:uniphy will output clock as 50000000Hz
+[   17.578365] hsl_port_phy_gpio_reset[685]:INFO:GPIO39 reset PHY done
+[   17.689173] qca_link_polling_select[1332]:INFO:link-polling-required node does not exist
+[   17.702031] regi_init[3957]:INFO:Initializing SCOMPHY Done!!
+[   17.739024] ssdk_dt_parse[1061]:INFO:switch node is qca83xx!
+[   17.815139] f1_phy_api_ops_init[1517]:INFO:qca probe f1 phy driver succeeded!
+[   17.821264] qca_ar8327_gpio_reset[3487]:INFO:reset_gpio node does not exist
+[   17.833078] qca_link_polling_select[1332]:INFO:link-polling-required node does not exist
+[   18.864701] qca_ar8327_hw_init[708]:INFO:AR8327_REG_LED_CTRL_0=0xcc35cff5
+[   19.488509] init port map proc seccess!regi_init[3988]:INFO:qca-ssdk module init succeeded!
+[   19.742930] l2tp_netlink: L2TP netlink interface
+[   21.170550] ssdk_port_link_notify[527]:INFO:QCA8337 port 4 link up speed 1000M duplex full 
+[   28.989123] ctnetlink v0.93: registering with nfnetlink.
+[   35.528626] nss-dp 39c00000.dp1 eth0: PHY Link up speed: 1000
+[   38.718583] nss-dp 39d00000.dp2 eth1: PHY Link up speed: 1000
+[   39.871189] wlan: [2631:I:RPTR] qca_multi_link_init_module: 
+[   39.871189] ******QCA Repeater Initialization Done***********
+[   44.234325] cnss_pci 0001:01:00.0: BAR 0: assigned [mem 0xa0400000-0xa05fffff 64bit]
+[   44.267940] cnss_pci 0001:01:00.0: enabling device (0000 -> 0002)
+[   46.118513] wlan: [3507:I:ANY] pld_pcie_wlan_enable: pld_pcie_wlan_enable: Invalid wlan_cfg config
+[   46.267583] wlan: [3507:I:ANY] init_ath_pci_3_0: 6ath_ol_pci_wifi3.0 :  (Atheros/multi-bss)
+[   47.748308] wlan: [4250:I:ANY] qca_napi_create: qca_napi_create: napi instance 0 created on pipe 4
+[   47.943495] wlan: [1628:I:TIF] Num PHY = 1
+[   47.970888] wlan: [1628:I:TIF] init_deinit_add_11ax_modes: hw_mode_id = 0 phy_id = 0 wireless modes = 0
+[   48.344078] wlan: [4250:I:MSCS] qca_mscs_module_init: 
+[   48.344078] ****QCA MSCS Initialization Done**** SoC ffffffc015800880
+[   48.385553] wlan: [4250:I:TIF] ol_ath_pdev_regdmn_init:  phy id = 0 Modes supported
+[   48.399359] wlan: [4250:I:TIF] ol_ath_pdev_regdmn_init:  Reg cap - phy_id = 0 supp_bnd = 1, modes = 680680c, lo_2g = 2312, hi_2g = 2732 lo_g5 = 0, hi_5g = 0
+[   48.471476] wlan: [4250:I:ANY] acfg_attach: acfg_attach: 3288: Netlink socket created:ffffffc017e4a400
+[   48.613600] wlan: [4250:I:ANY] ieee80211_cfg80211_radio_attach: ic: 0xffffffc012400880, wdev: 0xffffffc012418ad0, wiphy: 0xffffffc012773aa0, netdev: 0xffffffc012400000 
+[   48.684181] cnss_pci 0001:01:00.0: BAR 0: assigned [mem 0xa0400000-0xa05fffff 64bit]
+[   49.323857] wlan: [4250:I:ANY] qca_napi_create: qca_napi_create: napi instance 0 created on pipe 4
+[   49.538099] wlan: [3818:I:TIF] Num PHY = 1
+[   49.581089] wlan: [3818:I:TIF] init_deinit_add_11ax_modes: hw_mode_id = 0 phy_id = 0 wireless modes = 0
+[   50.268207] wlan: [4250:I:MSCS] qca_mscs_module_init: 
+[   50.268207] ****QCA MSCS Initialization Done**** SoC ffffffc00fd00880
+[   50.314261] wlan: [4250:I:TIF] ol_ath_pdev_regdmn_init:  phy id = 0 Modes supported
+[   50.364589] wlan: [4250:I:TIF] ol_ath_pdev_regdmn_init:  Reg cap - phy_id = 0 supp_bnd = 2, modes = f97f9001, lo_2g = 0, hi_2g = 0 lo_g5 = 4900, hi_5g = 5920
+[   50.490523] wlan: [4250:I:ANY] ieee80211_cfg80211_radio_attach: ic: 0xffffffc00f760880, wdev: 0xffffffc00f778ad0, wiphy: 0xffffffc0173b0aa0, netdev: 0xffffffc00f760000 
+[   50.493586] wlan: [4250:I:ANY] init_ath_pci_3_0: 6ath_ol_pci_wifi3.0 :  (Atheros/multi-bss)
+[   50.537755] wlan: [4467:I:ANY] init_ath_pci_2_0: 6ath_ol_pci_2_0:  (Atheros/multi-bss)
+[   50.538017] ath_ol_pci_2_0 0000:01:00.0: enabling device (0000 -> 0002)
+[   50.617926] wlan: [4467:E:HIF] hif_pci_configure_legacy_irq: X, ret = 0
+[   50.617948] wlan: [4467:I:ANY] qca_napi_create: qca_napi_create: napi instance 32 created on pipe 4
+[   52.821585] wlan: [4467:I:ANY] ieee80211_cfg80211_radio_attach: ic: 0xffffffc0076a0880, wdev: 0xffffffc0076b8ad0, wiphy: 0xffffffc007b0baa0, netdev: 0xffffffc0076a0000 
+--- lsmod ---
+asf                    16384  2 qca_ol,umac
+ath_pktlog             20480  0 
+authenc                16384  0 
+bonding               147456  2 ecm,qca_nss_pppoe
+bootconfig             16384  0 
+button_hotplug         16384  0 
+cbc                    16384  0 
+cfg80211              266240  3 qca_spectral,umac,qdf
+cls_fw                 16384  0 
+cls_u32                20480  0 
+compat_xtables         16384  0 
+crc_ccitt              16384  2 ppp_async,diagchar
+cryptodev              20480  3 
+cryptosoft             20480  0 
+dbm                    16384  1 dwc3_qcom
+des_generic            24576  0 
+diagchar              237568  0 
+dwc3                   77824  0 
+dwc3_qcom              20480  1 u_qdss
+ecb                    16384  0 
+ecm                   831488  0 
+ehci_hcd               73728  1 ehci_platform
+ehci_platform          16384  0 
+enid                   16384  0 
+gpio_button_hotplug    20480  0 
+gre                    16384  2 pptp,ip_gre
+input_core             36864  1 button_hotplug
+ip_account             28672  0 
+ip_gre                 20480  0 
+ip_set                 36864 16 xt_set,ip_set_list_set,ip_set_hash_netiface,ip_set_hash_netport,ip_set_hash_netnet,ip_set_hash_net,ip_set_hash_netportnet,ip_set_hash_mac,ip_set_hash_ipportnet,ip_set_hash_ipportip,ip_set_hash_ipport,ip_set_hash_ipmark,ip_set_hash_ip,ip_set_bitmap_port,ip_set_bitmap_ipmac,ip_set_bitmap_ip
+ip_set_bitmap_ip       20480  0 
+ip_set_bitmap_ipmac    20480  0 
+ip_set_bitmap_port     16384  0 
+ip_set_hash_ip         28672  0 
+ip_set_hash_ipmark     28672  0 
+ip_set_hash_ipport     28672  0 
+ip_set_hash_ipportip   32768  0 
+ip_set_hash_ipportnet   36864  0 
+ip_set_hash_mac        20480  0 
+ip_set_hash_net        32768  0 
+ip_set_hash_netiface   32768  0 
+ip_set_hash_netnet     36864  0 
+ip_set_hash_netport    32768  0 
+ip_set_hash_netportnet   36864  0 
+ip_set_list_set        20480  0 
+ip_tables              24576  3 iptable_nat,iptable_mangle,iptable_filter
+ip_tunnel              24576  2 ip_gre,sit
+ip6_gre                28672  0 
+ip6_tables             24576  3 ip6table_nat,ip6table_mangle,ip6table_filter
+ip6_tunnel             28672  1 ip6_gre
+ip6_udp_tunnel         16384  1 l2tp_core
+ip6t_MASQUERADE        16384  0 
+ip6t_NPT               16384  0 
+ip6t_REJECT            16384  0 
+ip6t_ah                16384  0 
+ip6t_eui64             12288  0 
+ip6t_frag              16384  0 
+ip6t_hbh               16384  0 
+ip6t_ipv6header        16384  0 
+ip6t_mh                16384  0 
+ip6t_rt                16384  0 
+ip6table_filter        16384  0 
+ip6table_mangle        16384  0 
+ip6table_nat           16384  0 
+ipt_ECN                16384  0 
+ipt_MASQUERADE         16384  1 
+ipt_REJECT             16384  3 
+iptable_filter         16384  1 
+iptable_mangle         16384  0 
+iptable_nat            16384  1 
+l2tp_core              24576  3 l2tp_ppp,qca_nss_l2tpv2,l2tp_netlink
+l2tp_netlink           20480  1 l2tp_ppp
+l2tp_ppp               24576  1 ecm
+leds_gpio              16384  0 
+libcomposite           40960  2 usb_f_qdss,usb_f_diag
+libcrc32c              16384  1 nf_nat_proto_sctp
+md5                    12288  0 
+mem_manager            24576  3 wifi_2_0,qca_ol,umac
+nf_conntrack          122880 37 ecm,shortcut_fe,nf_nat_pptp,nf_nat_ipv6,nf_nat_ipv4,nf_conntrack_pptp,nf_conntrack_ipv6,nf_conntrack_ipv4,xt_state,xt_helper,xt_conntrack,xt_connmark,xt_connlimit,xt_connbytes,xt_DSCP,nf_nat_tftp,nf_nat_snmp_basic,nf_nat_sip,nf_nat_masquerade_ipv4,nf_nat_irc,nf_nat_h323,nf_nat_ftp,nf_nat_amanda,nf_conntrack_tftp,nf_conntrack_snmp,nf_conntrack_sip,nf_conntrack_rtcache,nf_conntrack_proto_gre,nf_conntrack_netlink,nf_conntrack_irc,nf_conntrack_h323,nf_conntrack_ftp,nf_conntrack_broadcast,nf_conntrack_amanda,nf_conntrack_proto_sctp,nf_nat_masquerade_ipv6,nf_nat
+nf_conntrack_amanda    16384  1 nf_nat_amanda
+nf_conntrack_broadcast   16384  1 nf_conntrack_snmp
+nf_conntrack_ftp       16384  1 nf_nat_ftp
+nf_conntrack_h323      53248  1 nf_nat_h323
+nf_conntrack_ipv4      16384 13 
+nf_conntrack_ipv6      20480  1 
+nf_conntrack_irc       16384  1 nf_nat_irc
+nf_conntrack_netlink   32768  0 
+nf_conntrack_pptp      16384  1 nf_nat_pptp
+nf_conntrack_proto_gre   16384  1 nf_conntrack_pptp
+nf_conntrack_proto_sctp   20480  0 
+nf_conntrack_rtcache   16384  0 
+nf_conntrack_sip       28672  1 nf_nat_sip
+nf_conntrack_snmp      16384  1 nf_nat_snmp_basic
+nf_conntrack_tftp      16384  1 nf_nat_tftp
+nf_defrag_ipv4         16384  3 nf_conntrack_ipv4,xt_socket,xt_TPROXY
+nf_defrag_ipv6         36864  3 nf_conntrack_ipv6,xt_socket,xt_TPROXY
+nf_log_ipv6            16384  0 
+nf_nat                 20480 15 nf_nat_pptp,nf_nat_ipv6,nf_nat_ipv4,xt_nat,nf_nat_tftp,nf_nat_sip,nf_nat_redirect,nf_nat_proto_gre,nf_nat_masquerade_ipv4,nf_nat_irc,nf_nat_h323,nf_nat_ftp,nf_nat_amanda,nf_nat_proto_sctp,nf_nat_masquerade_ipv6
+nf_nat_amanda          16384  0 
+nf_nat_ftp             16384  0 
+nf_nat_h323            20480  0 
+nf_nat_ipv4            16384  1 iptable_nat
+nf_nat_ipv6            16384  1 ip6table_nat
+nf_nat_irc             16384  0 
+nf_nat_masquerade_ipv4   16384  1 ipt_MASQUERADE
+nf_nat_masquerade_ipv6   16384  1 ip6t_MASQUERADE
+nf_nat_pptp            16384  0 
+nf_nat_proto_gre       16384  1 nf_nat_pptp
+nf_nat_proto_sctp      16384  0 
+nf_nat_redirect        16384  1 xt_REDIRECT
+nf_nat_sip             20480  0 
+nf_nat_snmp_basic      20480  0 
+nf_nat_tftp            16384  0 
+nls_cp437              20480  0 
+nls_iso8859_1          16384  0 
+ocf                    32768  2 cryptosoft,cryptodev
+ppp_async              20480  0 
+ppp_generic            36864 10 ecm,ppp_mppe,ppp_async,l2tp_ppp,qca_nss_pptp,pptp,qca_nss_pppoe,pppoe,pppox,qca_nss_l2tpv2
+ppp_mppe               16384  0 
+pppoe                  20480  2 ecm,qca_nss_pppoe
+pppox                  16384  3 l2tp_ppp,pptp,pppoe
+pptp                   28672  3 ecm,nf_conntrack_proto_gre,qca_nss_pptp
+qca_nss_dp             53248  1 qca_nss_drv
+qca_nss_drv          1626112  9 wifi_2_0,wifi_3_0,qca_ol,umac,ecm,qca_nss_pptp,qca_nss_pppoe,qca_nss_l2tpv2,qca_nss_gre
+qca_nss_gre            49152  0 
+qca_nss_l2tpv2         20480  0 
+qca_nss_pppoe          16384  0 
+qca_nss_pptp           20480  0 
+qca_ol               1740800  2 wifi_2_0,wifi_3_0
+qca_spectral          143360  1 qca_ol
+qca_ssdk              765952  1 qca_nss_dp
+qdf                   491520  9 rawmode_sim,smart_antenna,ath_pktlog,wifi_2_0,wifi_3_0,qca_ol,qca_spectral,umac,asf
+rawmode_sim            40960  0 
+sch_htb                24576  0 
+sch_prio               16384  0 
+sch_sfq                20480  0 
+scsi_mod              114688  1 sd_mod
+sd_mod                 36864  0 
+sha1_generic           16384  0 
+shortcut_fe           102400  1 shortcut_fe_drv
+shortcut_fe_drv        20480  0 
+shortcut_fe_ipv6      102400  1 shortcut_fe_drv
+sit                    24576  0 
+slhc                   16384  1 ppp_generic
+smart_antenna          57344  0 
+ts_bm                  16384  0 
+ts_fsm                 16384  0 
+ts_kmp                 16384  5 
+tun                    24576  0 
+tunnel4                16384  1 sit
+tunnel6                16384  1 ip6_tunnel
+u_qdss                 16384  1 usb_f_qdss
+udc_core               20480  2 libcomposite,dwc3
+udp_tunnel             16384  1 l2tp_core
+umac                 3584000  7 rawmode_sim,smart_antenna,ath_pktlog,wifi_2_0,wifi_3_0,qca_ol,qca_spectral
+usb_common             16384  5 libcomposite,dwc3,udc_core,dwc3_qcom,usbcore
+usb_f_diag             24576  1 diagchar
+usb_f_qdss             20480  0 
+usbcore               204800  5 xhci_plat_hcd,xhci_pci,xhci_hcd,ehci_platform,ehci_hcd
+wifi_2_0              704512  0 
+wifi_3_0             1130496  0 
+x_tables               28672 60 ipt_MASQUERADE,xt_u32,xt_time,xt_tcpudp,xt_tcpmss,xt_string,xt_statistic,xt_state,xt_socket,xt_recent,xt_quota,xt_pkttype,xt_physdev,xt_owner,xt_nat,xt_multiport,xt_mark,xt_mac,xt_limit,xt_length,xt_hl,xt_helper,xt_flowMARK,xt_ecn,xt_dscp,xt_conntrack,xt_connmark,xt_connlimit,xt_connbytes,xt_comment,xt_cgroup_MARK,xt_bpf,xt_addrtype,xt_TPROXY,xt_TCPMSS,xt_REDIRECT,xt_LOG,xt_IP4MARK,xt_HL,xt_DSCP,xt_CLASSIFY,iptable_mangle,iptable_filter,ipt_REJECT,ipt_ECN,ip_tables,xt_set,ip6t_NPT,ip6t_MASQUERADE,ip6t_rt,ip6t_frag,ip6t_hbh,ip6t_eui64,ip6t_mh,ip6t_ah,ip6t_ipv6header,ip6t_REJECT,ip6table_mangle,ip6table_filter,ip6_tables
+xhci_hcd              155648  2 xhci_plat_hcd,xhci_pci
+xhci_pci               16384  0 
+xhci_plat_hcd          16384  0 
+xt_CLASSIFY            12288  0 
+xt_DSCP                16384  0 
+xt_HL                  16384  0 
+xt_IP4MARK             12288  0 
+xt_LOG                 16384  0 
+xt_REDIRECT            16384  0 
+xt_TCPMSS              16384  0 
+xt_TPROXY              16384  0 
+xt_addrtype            16384  0 
+xt_bpf                 16384  0 
+xt_cgroup_MARK         16384  0 
+xt_comment             12288 62 
+xt_connbytes           16384  0 
+xt_connlimit           16384  0 
+xt_connmark            16384  0 
+xt_conntrack           16384 12 
+xt_dscp                16384  0 
+xt_ecn                 16384  0 
+xt_flowMARK            20480  0 
+xt_helper              16384  0 
+xt_hl                  16384  0 
+xt_length              12288  0 
+xt_limit               16384  0 
+xt_mac                 12288  1 
+xt_mark                12288  0 
+xt_multiport           16384  0 
+xt_nat                 16384  0 
+xt_owner               12288  0 
+xt_physdev             16384  1 
+xt_pkttype             12288  0 
+xt_quota               12288  0 
+xt_recent              20480  0 
+xt_set                 16384  0 
+xt_socket              16384  0 
+xt_state               16384  0 
+xt_statistic           12288  0 
+xt_string              12288  0 
+xt_tcpmss              12288  0 
+xt_tcpudp              16384  7 
+xt_time                16384  0 
+xt_u32                 16384  0 
+--- clk_summary ---
+   clock                         enable_cnt  prepare_cnt        rate   accuracy   phase
+----------------------------------------------------------------------------------------
+ uniphy_gcc_tx                            1            1   125000000          0 0  
+    gmac1_tx_clk_src                      1            1   125000000          0 0  
+       gmac1_tx_div_clk_src               2            2   125000000          0 0  
+          gcc_gmac1_tx_clk                2            2   125000000          0 0  
+          gcc_uniphy_tx_clk               2            2   125000000          0 0  
+ uniphy_gcc_rx                            1            1   125000000          0 0  
+    gmac1_rx_clk_src                      1            1   125000000          0 0  
+       gmac1_rx_div_clk_src               2            2   125000000          0 0  
+          gcc_gmac1_rx_clk                2            2   125000000          0 0  
+          gcc_uniphy_rx_clk               2            2   125000000          0 0  
+ gephy_gcc_tx                             2            2   125000000          0 0  
+    gmac0_tx_clk_src                      1            1   125000000          0 0  
+       gmac0_tx_div_clk_src               2            2   125000000          0 0  
+          gcc_gephy_tx_clk                2            2   125000000          0 0  
+          gcc_gmac0_tx_clk                2            2   125000000          0 0  
+    gmac0_rx_clk_src                      1            1   125000000          0 0  
+       gmac0_rx_div_clk_src               2            2   125000000          0 0  
+          gcc_gephy_rx_clk                2            2   125000000          0 0  
+          gcc_gmac0_rx_clk                2            2   125000000          0 0  
+ gephy_gcc_rx                             0            0   125000000          0 0  
+ pcie20_phy1_pipe_clk                     1            1   125000000          0 0  
+    pcie1_pipe_clk_src                    1            1   125000000          0 0  
+       gcc_pcie1_pipe_clk                 2            2   125000000          0 0  
+ pcie20_phy0_pipe_clk                     1            1   125000000          0 0  
+    pcie0_pipe_clk_src                    1            1   125000000          0 0  
+       gcc_pcie0_pipe_clk                 2            2   125000000          0 0  
+ xo                                       9            9    24000000          0 0  
+    apss_pll_early                        2            2  1008000000          0 0  
+       apcs_alias0_clk_src                1            1  1008000000          0 0  
+          apcs_alias0_core_clk            1            1  1008000000          0 0  
+       apss_pll                           0            0  1008000000          0 0  
+    adss_pwm_clk_src                      0            0    24000000          0 0  
+       gcc_adss_pwm_clk                   0            0    24000000          0 0  
+    wcss_ahb_clk_src                      0            0    24000000          0 0  
+       gcc_q6_ahb_clk                     0            0    24000000          0 0  
+       gcc_q6_ahb_s_clk                   0            0    24000000          0 0  
+       gcc_sys_noc_wcss_ahb_clk           0            0    24000000          0 0  
+       gcc_wcss_acmt_clk                  0            0    24000000          0 0  
+       gcc_wcss_ahb_s_clk                 0            0    24000000          0 0  
+       gcc_wcss_ecahb_clk                 0            0    24000000          0 0  
+    usb0_aux_clk_src                      0            0     2000000          0 0  
+       gcc_usb0_aux_clk                   0            0     2000000          0 0  
+    sdcc1_apps_clk_src                    0            0    24000000          0 0  
+       gcc_sdcc1_apps_clk                 0            0    24000000          0 0  
+    q6_axi_clk_src                        0            0    24000000          0 0  
+       gcc_q6_axim_clk                    0            0    24000000          0 0  
+       gcc_q6_axim2_clk                   0            0    24000000          0 0  
+    pcie1_aux_clk_src                     1            1     2000000          0 0  
+       gcc_pcie1_aux_clk                  1            1     2000000          0 0  
+    pcie0_aux_clk_src                     1            1     2000000          0 0  
+       gcc_pcie0_aux_clk                  1            1     2000000          0 0  
+    lpass_sway_clk_src                    0            0    24000000          0 0  
+       gcc_lpass_sway_clk                 0            0    24000000          0 0  
+       gcc_snoc_lpass_sway_clk            0            0    24000000          0 0  
+    lpass_axim_clk_src                    0            0    24000000          0 0  
+       gcc_lpass_core_axim_clk            0            0    24000000          0 0  
+       gcc_snoc_lpass_axim_clk            0            0    24000000          0 0  
+    gp3_clk_src                           0            0    24000000          0 0  
+       gcc_gp3_clk                        0            0    24000000          0 0  
+    gp2_clk_src                           0            0    24000000          0 0  
+       gcc_gp2_clk                        0            0    24000000          0 0  
+    gp1_clk_src                           0            0    24000000          0 0  
+       gcc_gp1_clk                        0            0    24000000          0 0  
+    gcc_xo_clk_src                        2            2    24000000          0 0  
+       gcc_cmn_blk_sys_clk                1            1    24000000          0 0  
+       gcc_uniphy_sys_clk                 1            1    24000000          0 0  
+       gcc_xo_clk                         1            1    24000000          0 0  
+    blsp1_uart2_apps_clk_src              0            0    24000000          0 0  
+       gcc_blsp1_uart2_apps_clk           0            0    24000000          0 0  
+    apss_axi_clk_src                      1            1    24000000          0 0  
+       gcc_apss_axi_clk                   1            1    24000000          0 0  
+    ubi32_pll_main                        1            1  1000000000          0 0  
+       ubi32_pll                          1            1  1000000000          0 0  
+          ubi0_core_clk_src               1            1  1000000000          0 0  
+             gcc_ubi0_core_clk            5            5  1000000000          0 0  
+    gpll4_main                            2            2  1200000000          0 0  
+       gpll4                              3            3  1200000000          0 0  
+          gmac_clk_src                    9            9   240000000          0 0  
+             gcc_gmac0_cfg_clk            1            1   240000000          0 0  
+             gcc_gmac0_ptp_clk            1            1   240000000          0 0  
+             gcc_gmac0_sys_clk            0            0   240000000          0 0  
+             gcc_gmac1_cfg_clk            1            1   240000000          0 0  
+             gcc_gmac1_ptp_clk            1            1   240000000          0 0  
+             gcc_gmac1_sys_clk            1            1   240000000          0 0  
+             gcc_snoc_gmac0_ahb_clk           1            1   240000000          0 0  
+             gcc_snoc_gmac0_axi_clk           1            1   240000000          0 0  
+             gcc_snoc_gmac1_ahb_clk           1            1   240000000          0 0  
+             gcc_snoc_gmac1_axi_clk           1            1   240000000          0 0  
+          usb0_mock_utmi_clk_src           0            0   120000000          0 0  
+             gcc_usb0_mock_utmi_clk           0            0   120000000          0 0  
+          qdss_traceclkin_clk_src           0            0   300000000          0 0  
+             gcc_qdss_traceclkin_clk           0            0   300000000          0 0  
+          qdss_tsctr_clk_src              1            1   600000000          0 0  
+             qdss_dap_sync_clk_src           0            0   150000000          0 0  
+                gcc_wcss_dbg_ifc_dapbus_clk           0            0   150000000          0 0  
+                gcc_wcss_dbg_ifc_dapbus_bdg_clk           0            0   150000000          0 0  
+                gcc_wcss_dbg_ifc_apb_clk           0            0   150000000          0 0  
+                gcc_wcss_dbg_ifc_apb_bdg_clk           0            0   150000000          0 0  
+                gcc_q6ss_trig_clk           0            0   150000000          0 0  
+                gcc_q6ss_pclkdbg_clk           0            0   150000000          0 0  
+             qdss_tsctr_div2_clk_src           0            0   300000000          0 0  
+                gcc_wcss_dbg_ifc_nts_clk           0            0   300000000          0 0  
+                gcc_wcss_dbg_ifc_nts_bdg_clk           0            0   300000000          0 0  
+                gcc_q6_tsctr_1to2_clk           0            0   300000000          0 0  
+             gcc_qdss_dap_clk             9            9   600000000          0 0  
+             gcc_qdss_tsctr_div8_clk           0            0   600000000          0 0  
+             gcc_ubi0_dbg_clk             1            1   600000000          0 0  
+          qdss_at_clk_src                 0            0   240000000          0 0  
+             eud_at_clk_src               0            0    40000000          0 0  
+                gcc_usb0_eud_at_clk           0            0    40000000          0 0  
+                gcc_qdss_eud_at_clk           0            0    40000000          0 0  
+             gcc_q6ss_atbm_clk            0            0   240000000          0 0  
+             gcc_qdss_at_clk              1            1   240000000          0 0  
+             gcc_wcss_dbg_ifc_atb_bdg_clk           0            0   240000000          0 0  
+             gcc_wcss_dbg_ifc_atb_clk           0            0   240000000          0 0  
+          pcie0_axi_clk_src               4            4   240000000          0 0  
+             gcc_pcie0_axi_m_clk           1            1   240000000          0 0  
+             gcc_pcie0_axi_s_bridge_clk           1            1   240000000          0 0  
+             gcc_pcie0_axi_s_clk           1            1   240000000          0 0  
+             gcc_sys_noc_pcie0_axi_clk           1            1   240000000          0 0  
+    gpll2_main                            1            1  1152000000          0 0  
+       gpll2                              0            0  1152000000          0 0  
+    gpll0_main                            3            3   800000000          0 0  
+       gpll0                              7            7   800000000          0 0  
+          ubi0_axi_clk_src                2            2   400000000          0 0  
+             gcc_snoc_ubi0_axi_clk           1            1   400000000          0 0  
+             gcc_ubi0_axi_clk             1            1   400000000          0 0  
+          usb0_master_clk_src             0            0   200000000          0 0  
+             gcc_sys_noc_usb0_axi_clk           0            0   200000000          0 0  
+             gcc_usb0_master_clk           0            0   200000000          0 0  
+          usb0_lfps_clk_src               0            0    25000000          0 0  
+             gcc_usb0_lfps_clk            0            0    25000000          0 0  
+          system_noc_bfdcd_clk_src           2            2   266666666          0 0  
+             system_noc_clk_src           2            2   266666666          0 0  
+                gcc_wcss_axi_s_clk           0            0   266666666          0 0  
+                gcc_wcss_axi_m_clk           0            0   266666666          0 0  
+                gcc_ubi0_utcm_clk           1            1   266666666          0 0  
+                gcc_ubi0_nc_axi_clk           1            1   266666666          0 0  
+                gcc_qdss_etr_usb_clk           0            0   266666666          0 0  
+                gcc_q6_axis_clk           0            0   266666666          0 0  
+          qpic_io_macro_clk_src           1            1   200000000          0 0  
+             gcc_qpic_io_macro_clk           1            1   200000000          0 0  
+          qdss_stm_clk_src                0            0   200000000          0 0  
+             gcc_qdss_stm_clk             0            0   200000000          0 0  
+             gcc_sys_noc_qdss_stm_axi_clk           0            0   200000000          0 0  
+          pcnoc_bfdcd_clk_src             1            1   100000000          0 0  
+             pcnoc_clk_src               11           12   100000000          0 0  
+                gcc_usb0_phy_cfg_ahb_clk           0            0   100000000          0 0  
+                gcc_uniphy_ahb_clk           1            1   100000000          0 0  
+                gcc_ubi0_cfg_clk           1            1   100000000          0 0  
+                gcc_sdcc1_ahb_clk           0            0   100000000          0 0  
+                gcc_qpic_clk              1            1   100000000          0 0  
+                gcc_qpic_ahb_clk           1            2   100000000          0 0  
+                gcc_qdss_dap_ahb_clk           0            0   100000000          0 0  
+                gcc_qdss_cfg_ahb_clk           0            0   100000000          0 0  
+                gcc_prng_ahb_clk           1            1   100000000          0 0  
+                gcc_pcie1_ahb_clk           1            1   100000000          0 0  
+                gcc_pcie0_ahb_clk           1            1   100000000          0 0  
+                gcc_mdio1_ahb_clk           1            1   100000000          0 0  
+                gcc_mdio0_ahb_clk           1            1   100000000          0 0  
+                gcc_dcc_clk               0            0   100000000          0 0  
+                gcc_crypto_axi_clk           0            0   100000000          0 0  
+                gcc_crypto_ahb_clk           0            1   100000000          0 0  
+                gcc_cmn_blk_ahb_clk           1            1   100000000          0 0  
+                gcc_blsp1_ahb_clk           4            5   100000000          0 0  
+          pcie1_axi_clk_src               4            4   200000000          0 0  
+             gcc_pcie1_axi_m_clk           1            1   200000000          0 0  
+             gcc_pcie1_axi_s_bridge_clk           1            1   200000000          0 0  
+             gcc_pcie1_axi_s_clk           1            1   200000000          0 0  
+             gcc_sys_noc_pcie1_axi_clk           1            1   200000000          0 0  
+          crypto_clk_src                  0            0   160000000          0 0  
+             gcc_crypto_clk               0            0   160000000          0 0  
+          blsp1_qup3_spi_apps_clk_src           0            0    50000000          0 0  
+             gcc_blsp1_qup3_spi_apps_clk           0            0    50000000          0 0  
+          blsp1_qup3_i2c_apps_clk_src           0            0    50000000          0 0  
+             gcc_blsp1_qup3_i2c_apps_clk           0            0    50000000          0 0  
+          blsp1_qup2_spi_apps_clk_src           0            0    50000000          0 0  
+             gcc_blsp1_qup2_spi_apps_clk           0            0    50000000          0 0  
+          blsp1_qup2_i2c_apps_clk_src           0            0    50000000          0 0  
+             gcc_blsp1_qup2_i2c_apps_clk           0            0    50000000          0 0  
+          blsp1_qup1_spi_apps_clk_src           1            1    50000000          0 0  
+             gcc_blsp1_qup1_spi_apps_clk           1            1    50000000          0 0  
+          blsp1_qup1_i2c_apps_clk_src           0            0    50000000          0 0  
+             gcc_blsp1_qup1_i2c_apps_clk           0            0    50000000          0 0  
+          apss_ahb_clk_src                1            1   100000000          0 0  
+             gcc_apss_ahb_clk             1            1   100000000          0 0  
+             apss_ahb_postdiv_clk_src           0            0   100000000          0 0  
+       gpll0_out_main_div2                1            1   400000000          0 0  
+          blsp1_uart1_apps_clk_src           1            1     3686400          0 0  
+             gcc_blsp1_uart1_apps_clk           3            3     3686400          0 0  
+ sleep_clk                                2            2       32000          0 0  
+    gcc_sleep_clk_src                     1            1       32000          0 0  
+       gcc_usb0_sleep_clk                 0            0       32000          0 0  
+ usb0_pipe_clk_src                        0            0           0          0 0  
+    gcc_usb0_pipe_clk                     0            0           0          0 0  
+ gcc_btss_lpo_clk                         0            0           0          0 0  
+--- pinctrl ---
+registered pins: 53
+pin 0 (GPIO_0) 
+pin 1 (GPIO_1) 
+pin 2 (GPIO_2) 
+pin 3 (GPIO_3) 
+pin 4 (GPIO_4) 
+pin 5 (GPIO_5) 
+pin 6 (GPIO_6) 
+pin 7 (GPIO_7) 
+pin 8 (GPIO_8) 
+pin 9 (GPIO_9) 
+pin 10 (GPIO_10) 
+pin 11 (GPIO_11) 
+pin 12 (GPIO_12) 
+pin 13 (GPIO_13) 
+pin 14 (GPIO_14) 
+pin 15 (GPIO_15) 
+pin 16 (GPIO_16) 
+pin 17 (GPIO_17) 
+pin 18 (GPIO_18) 
+pin 19 (GPIO_19) 
+pin 20 (GPIO_20) 
+pin 21 (GPIO_21) 
+pin 22 (GPIO_22) 
+pin 23 (GPIO_23) 
+pin 24 (GPIO_24) 
+pin 25 (GPIO_25) 
+pin 26 (GPIO_26) 
+pin 27 (GPIO_27) 
+pin 28 (GPIO_28) 
+pin 29 (GPIO_29) 
+pin 30 (GPIO_30) 
+pin 31 (GPIO_31) 
+pin 32 (GPIO_32) 
+pin 33 (GPIO_33) 
+pin 34 (GPIO_34) 
+pin 35 (GPIO_35) 
+pin 36 (GPIO_36) 
+pin 37 (GPIO_37) 
+pin 38 (GPIO_38) 
+pin 39 (GPIO_39) 
+pin 40 (GPIO_40) 
+pin 41 (GPIO_41) 
+pin 42 (GPIO_42) 
+pin 43 (GPIO_43) 
+pin 44 (GPIO_44) 
+pin 45 (GPIO_45) 
+pin 46 (GPIO_46) 
+pin 47 (SDC1_CLK) 
+pin 48 (SDC1_CMD) 
+pin 49 (SDC1_DATA) 
+pin 50 (SDC2_CLK) 
+pin 51 (SDC2_CMD) 
+pin 52 (SDC2_DATA) 
+--- regulator ---
+ regulator                      use open bypass voltage current     min     max
+-------------------------------------------------------------------------------
+ regulator-dummy                  0    6      0     0mV     0mA     0mV     0mV 
+    a0000000.pci                                                    0mV     0mV
+    a0000000.pci                                                    0mV     0mV
+    a0000000.pci                                                    0mV     0mV
+    80000000.pci                                                    0mV     0mV
+    80000000.pci                                                    0mV     0mV
+    80000000.pci                                                    0mV     0mV
+--- gpio list ---
+GPIOs 0-46, platform/1000000.pinctrl, 1000000.pinctrl:
+ gpio0   : in  7 8mA pull down
+ gpio1   : in  0 8mA pull down
+ gpio2   : in  7 8mA pull down
+ gpio3   : in  7 8mA pull down
+ gpio4   : in  2 8mA no pull
+ gpio5   : in  2 8mA no pull
+ gpio6   : in  2 8mA no pull
+ gpio7   : in  2 8mA no pull
+ gpio8   : in  2 8mA no pull
+ gpio9   : in  2 8mA no pull
+ gpio10  : out 1 2mA no pull
+ gpio11  : out 1 2mA no pull
+ gpio12  : in  1 2mA no pull
+ gpio13  : out 1 2mA no pull
+ gpio14  : in  0 8mA pull down
+ gpio15  : out 0 2mA pull down
+ gpio16  : in  0 8mA pull down
+ gpio17  : in  0 8mA pull down
+ gpio18  : out 0 2mA pull down
+ gpio19  : in  3 8mA pull down
+ gpio20  : in  1 8mA no pull
+ gpio21  : in  1 8mA no pull
+ gpio22  : in  0 8mA pull down
+ gpio23  : out 0 8mA pull down
+ gpio24  : out 0 8mA pull down
+ gpio25  : out 0 8mA pull down
+ gpio26  : out 0 8mA pull down
+ gpio27  : out 0 8mA pull down
+ gpio28  : out 0 8mA pull down
+ gpio29  : in  0 8mA pull down
+ gpio30  : in  0 8mA pull down
+ gpio31  : in  0 8mA pull down
+ gpio32  : in  0 8mA pull down
+ gpio33  : in  0 8mA pull down
+ gpio34  : in  0 8mA pull down
+ gpio35  : in  0 8mA pull down
+ gpio36  : in  1 8mA pull up
+ gpio37  : in  1 8mA pull up
+ gpio38  : in  0 8mA pull up
+ gpio39  : out 0 8mA pull down
+ gpio40  : in  1 8mA pull down
+ gpio41  : in  0 8mA pull down
+ gpio42  : in  5 8mA pull down
+ gpio43  : in  5 8mA pull down
+ gpio44  : in  0 8mA pull down
+ gpio45  : in  5 8mA pull down
+ gpio46  : in  0 8mA pull down
