@@ -1,0 +1,57 @@
+# Live Verification Results (Stock Firmware Running)
+# Date: 2026-04-19
+
+## VERIFY 1: PERST GPIO TLMM Registers
+GPIO 15 (PCIe x2, QCN9024):
+  TLMM_GPIO15_CFG (0x100F000): 0x00000201  → output, 2mA
+  TLMM_GPIO15_IO  (0x100F004): 0x00000003  → output HIGH, input reads 1
+  
+GPIO 18 (PCIe x1, QCA9887):
+  TLMM_GPIO18_CFG (0x1012000): 0x00000201  → output, 2mA
+  TLMM_GPIO18_IO  (0x1012004): 0x00000000  → output LOW
+
+## VERIFY 2: PCIe Link Status (DBI + 0x80)
+DBI0 @ 0x80000080 (RC0, x1): 0x30110008
+  → Link Speed: Gen2 (5GT/s), Negotiated Width: x1
+  → LINK UP ✅
+
+DBI1 @ 0xa0000080 (RC1, x2): 0x30220008
+  → Link Speed: Gen2 (5GT/s), Negotiated Width: x2
+  → LINK UP ✅
+
+## VERIFY 3: PHY PLL Lock (SSCG_CTRL_REG_4, bit15)
+PHY0 @ 0x7e0a8: 0x00009CB9 → bit15=1, PLL LOCKED ✅
+PHY1 @ 0x860a8: 0x00009CB9 → bit15=1, PLL LOCKED ✅
+
+## VERIFY 4: PARF Key Registers
+PARF0[0x1c] (SLV_ADDR_SPACE_SIZE): 0x00101010  ← x1
+PARF1[0x1c] (SLV_ADDR_SPACE_SIZE): 0x00101010  ← x2 (same)
+PARF0[0x100] (DEVICE_TYPE): 0x00000000  ← x1
+PARF1[0x100] (DEVICE_TYPE): 0x00000000  ← x2 (same)
+
+## VERIFY 5: Boot Flags (OpenWrt ready)
+flag_boot_rootfs: 0 → will boot from rootfs (mtd18) ✅
+flag_last_success: 0 ✅
+
+## VERIFY 6: PCI Config Space
+Config space read via DBI+0x100000 returned 0xFFFFFFFF for both.
+(Normal — config space requires proper ATU/iATU config for read)
+PCIe devices confirmed by separate lspci-style enumeration in stock_full_dump.txt:
+  0000:01:00.0 → QCA9887 (168c:0050) ✅
+  0001:01:00.0 → QCN9024 (17cb:1104) ✅
+
+## VERIFY 7: PERST GPIO DT Values (binary hex)
+pci@80000000/perst-gpio: 00 00 00 06  00 00 00 12  00 00 00 00
+  → phandle=6 (tlmm), GPIO=18 (0x12), flags=0x00 (ACTIVE_LOW)
+  
+pci@a0000000/perst-gpio: 00 00 00 06  00 00 00 0f  00 00 00 01
+  → phandle=6 (tlmm), GPIO=15 (0x0f), flags=0x01 (ACTIVE_HIGH)
+
+### CRITICAL: PERST Polarity Comparison
+| Controller | GPIO | Stock DT | OpenWrt DTS | Match? |
+|---|---|---|---|---|
+| pcie1 (x1, QCA9887) | 18 | active-LOW (0x00) | GPIO_ACTIVE_LOW | ✅ YES |
+| pcie0 (x2, QCN9024) | 15 | active-HIGH (0x01) | GPIO_ACTIVE_LOW | ❌ NO! |
+
+The pcie0 PERST polarity in OpenWrt DTS is WRONG compared to stock firmware.
+This doesn't directly cause the pcie1 failure, but should be fixed.
