@@ -1,0 +1,53 @@
+From 379c7fc3a08173563d4e083197bbfe0830733fa2 Mon Sep 17 00:00:00 2001
+From: YOUR NAME <your.email@example.com>
+Date: Wed, 22 Apr 2026 18:37:13 +0800
+Subject: [PATCH] qualcommax: ipq50xx: ax6000: enable pcie1 for QCA9887
+
+The Xiaomi AX6000 has three radios:
+  - IPQ5018 integrated 2.4 GHz (ath11k AHB, wifi0)
+  - QCN9024 on PCIe0 (ath11k PCI, QCA8074-class 5 GHz)
+  - QCA9887 on PCIe1 (ath10k, 5 GHz)
+
+The DTS previously kept pcie1 disabled because the controller
+could not bring the link up. The real cause was the PERST GPIO
+polarity: the stock device-tree uses GPIO_ACTIVE_HIGH on GPIO18
+for the QCA9887 card, while OpenWrt had GPIO_ACTIVE_LOW, leaving
+the card held in reset.
+
+With the correct polarity the PCIe1 link trains and the QCA9887
+enumerates at 01:00.0. ath10k loads firmware-2.bin, registers
+phy0 with mac80211, and provides a functional 5 GHz AP.
+
+Tested on a reworked Xiaomi AX6000 with QCA9887 soldered in.
+All three radios enumerate, load firmware and beacon
+successfully; scan, association and data traffic confirmed on
+each radio.
+
+Signed-off-by: YOUR NAME <your.email@example.com>
+---
+ target/linux/qualcommax/dts/ipq5018-ax6000.dts | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/target/linux/qualcommax/dts/ipq5018-ax6000.dts b/target/linux/qualcommax/dts/ipq5018-ax6000.dts
+index 67b00f2f89..d032a10625 100644
+--- a/target/linux/qualcommax/dts/ipq5018-ax6000.dts
++++ b/target/linux/qualcommax/dts/ipq5018-ax6000.dts
+@@ -549,13 +549,9 @@
+ };
+ 
+ &pcie1 {
+-	/*
+-	 * although the pcie1 phy probes successfully, the controller is unable
+-	 * to bring it up. So let's disable it until a solution is found.
+-	 */
+-	status = "disabled";
++	status = "okay";
+ 
+-	perst-gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
++	perst-gpios = <&tlmm 18 GPIO_ACTIVE_HIGH>;
+ 
+ 	pcie@0 {
+ 		wifi@0,0 {
+-- 
+2.43.0
+
