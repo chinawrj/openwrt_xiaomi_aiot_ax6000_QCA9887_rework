@@ -1,0 +1,44 @@
+From 7a3179ba9d1d4efec2f24b68719b4b006da89e6f Mon Sep 17 00:00:00 2001
+From: Dev <dev@local>
+Date: Wed, 22 Apr 2026 16:28:16 +0800
+Subject: [PATCH] arm64: dts: qcom: ipq5018-ax6000: enable pcie1 and fix pcie0
+ PERST polarity  Enable the PCIe1 (x1) controller connected to QCA9887 by
+ removing the disable stub. The controller was disabled due to link-up
+ failures, but recent upstream pcie-qcom driver improvements warrant
+ retesting.  Also fix the PCIe0 (x2) PERST GPIO polarity: stock firmware uses
+ GPIO_ACTIVE_HIGH for GPIO 15, but OpenWrt had it as GPIO_ACTIVE_LOW. 
+ Signed-off-by: Dev <dev@local>
+
+---
+ .../files/arch/arm64/boot/dts/qcom/ipq5018-ax6000.dts     | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq5018-ax6000.dts b/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq5018-ax6000.dts
+index 4782101..207db08 100644
+--- a/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq5018-ax6000.dts
++++ b/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq5018-ax6000.dts
+@@ -529,7 +529,7 @@
+ &pcie0 {
+ 	status = "okay";
+ 
+-	perst-gpios = <&tlmm 15 GPIO_ACTIVE_LOW>;
++	perst-gpios = <&tlmm 15 GPIO_ACTIVE_HIGH>;
+ 
+ 	pcie@0 {
+ 		wifi@0,0 {
+@@ -549,11 +549,7 @@
+ };
+ 
+ &pcie1 {
+-	/*
+-	 * although the pcie1 phy probes successfully, the controller is unable
+-	 * to bring it up. So let's disable it until a solution is found.
+-	 */
+-	status = "disabled";
++	status = "okay";
+ 
+ 	perst-gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
+ 
+-- 
+2.43.0
+
