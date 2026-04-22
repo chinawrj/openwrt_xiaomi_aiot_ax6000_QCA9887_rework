@@ -1,0 +1,6 @@
+1048,1049c1048,1049
+< 			status = "disabled";
+< 			perst-gpios = <0x0b 0x12 0x01>;
+---
+> 			status = "okay";
+> 			perst-gpios = <0x0b 0x12 0x00>;

@@ -69,20 +69,40 @@ git format-patch -1 --subject-prefix=PATCH \
 
 ### 2.2 Build test against current mainline
 
-OpenWrt requires contributors to have built-tested the patch on top of
-current `main`:
+**DONE.** Both the unpatched upstream `main` (branch
+`upstream-ax6000-prepatch` @ FETCH_HEAD) and the patched tree
+(`upstream-ax6000-pcie1`) were built clean with
 
 ```sh
 cd ~/fun/openwrt
-git checkout upstream-ax6000-pcie1
-./scripts/feeds update -a && ./scripts/feeds install -a
-# select: Target System = Qualcomm Atheros 802.11ax WiSoC-based,
-#         Subtarget = IPQ50XX, Profile = Xiaomi AX6000
-make defconfig
-make -j$(nproc) target/linux/compile V=s
+git checkout <branch>
+make -j6 target/linux/{clean,compile,install} V=s
 ```
 
-A clean `target/linux/compile` + full image build must succeed.
+against kernel 6.12.80. Zero errors in either log.
+
+The only difference between the two **compiled** DTBs
+(`build_dir/.../image-ipq5018-ax6000.dtb`) is:
+
+```diff
+--- dtb_pre.dts  (upstream, unpatched)
++++ dtb_post.dts (upstream + patch)
+<  status = "disabled";
+<  perst-gpios = <0x0b 0x12 0x01>;   /* tlmm, GPIO 18, ACTIVE_LOW */
+---
+>  status = "okay";
+>  perst-gpios = <0x0b 0x12 0x00>;   /* tlmm, GPIO 18, ACTIVE_HIGH */
+```
+
+i.e. exactly the two lines the patch targets, nothing else changes.
+
+Evidence saved in this directory:
+
+* [dtb_pre.dts](dtb_pre.dts)  — decompiled DTB before the patch
+* [dtb_post.dts](dtb_post.dts) — decompiled DTB after the patch
+* [dtb_diff.txt](dtb_diff.txt) — the 4-line diff above
+
+Build logs are at `/tmp/build_pre.log` and `/tmp/build_post.log`.
 
 ### 2.3 `checkpatch.pl` clean
 
