@@ -1,13 +1,52 @@
 # OpenWrt Xiaomi AX6000 (AIOT) — QCA9887 PCIe Rework
 
+**Status:** ✅ **DONE — upstream PR [openwrt/openwrt#23047](https://github.com/openwrt/openwrt/pull/23047) open, all 3 radios validated.**
+
 ## Project Goal
 
-Enable the QCA9887 WiFi radio (connected via 1-lane PCIe) on OpenWrt for the Xiaomi AX6000 AIOT (RA72) router.
+Enable the QCA9887 WiFi radio (connected via 1-lane PCIe1) on OpenWrt for the Xiaomi AX6000 AIOT (RA72) router, turning it into a true tri-radio device.
 
-The upstream OpenWrt commit [d7f9e240c208](https://github.com/openwrt/openwrt/commit/d7f9e240c208891a7d26d7a1d308cabd70618cae) explicitly disables this PCIe controller with the comment:
+The upstream OpenWrt commit [`d7f9e240c208`](https://github.com/openwrt/openwrt/commit/d7f9e240c208891a7d26d7a1d308cabd70618cae) (initial AX6000 support) explicitly disabled PCIe1 with the comment:
+
 > "although the pcie1 phy probes successfully, the controller is unable to bring it up"
 
-This project collects stock firmware data and proposes fixes.
+Root cause turned out to be a **single `perst-gpios` polarity flag mismatch** against the stock Xiaomi device-tree, not a hardware/controller issue.
+
+## Result
+
+| Radio | Bus | Driver | Band | Status |
+|---|---|---|---|---|
+| IPQ5018 built-in | AHB (`c000000.wifi`) | `ath11k` | 2.4 GHz | ✅ AP up, ch 6, HE20 |
+| QCN9024 | PCIe0 (2-lane) | `ath11k_pci` | 5 GHz | ✅ AP up, ch 149, HE80 |
+| **QCA9887** | **PCIe1 (1-lane)** | **`ath10k_pci`** | **5 GHz** | **✅ AP up, ch 36, VHT80 (this fix)** |
+
+Full RF / dmesg / `iw dev` / `ubus` evidence: [VALIDATION_REPORT.md](VALIDATION_REPORT.md) and the [PR comment](https://github.com/openwrt/openwrt/pull/23047#issuecomment-4296313093).
+
+## The Fix
+
+A 2-line change in `target/linux/qualcommax/dts/ipq5018-ax6000.dts`:
+
+```diff
+ &pcie1 {
+-    /*
+-     * although the pcie1 phy probes successfully, the controller is unable
+-     * to bring it up. So let's disable it until a solution is found.
+-     */
+-    status = "disabled";
++    status = "okay";
+ 
+-    perst-gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
++    perst-gpios = <&tlmm 18 GPIO_ACTIVE_HIGH>;
+```
+
+Everything else needed (ath10k `wifi@0,0` node, `caldata_qca9889` nvmem cell, PCIe1 phy node, `kmod-ath10k-ct-smallbuffers` + `ath10k-firmware-qca9887-ct` in the image recipe) was **already upstream**. The DTS was the only missing piece.
+
+### Scope
+
+The change is strictly scoped to `xiaomi_ax6000`. No other OpenWrt device is affected:
+- No other DTS `#include`s `ipq5018-ax6000.dts`
+- No other image recipe references it
+- `&pcie1 { ... }` override only applies inside this single board's final DTB
 
 ## Hardware
 
@@ -16,45 +55,74 @@ This project collects stock firmware data and proposes fixes.
 | Router | Xiaomi AX6000 AIOT (internal model RA72) |
 | SoC | Qualcomm IPQ5018 v1.1 |
 | Flash | NAND, UBI |
-| WiFi 0 | IPQ5018 built-in (c000000.wifi), 802.11ax |
-| WiFi 1 | QCN9024 (PCIe x2, 17cb:1104), 802.11ax 5GHz |
-| WiFi 2 | QCA9887 (PCIe x1, 168c:0050), 802.11ac 2.4GHz mesh/AIoT |
-| PCIe RC0 | 0x80000000, 1-lane, phy@7e000, PERST GPIO 18 |
-| PCIe RC1 | 0xa0000000, 2-lane, phy@86000+86800, PERST GPIO 15 |
+| WiFi 0 | IPQ5018 built-in (c000000.wifi), 802.11ax 2.4 GHz |
+| WiFi 1 | QCN9024 on PCIe0 (17cb:1104), 802.11ax 5 GHz |
+| WiFi 2 | QCA9887 on PCIe1 (168c:0050), 802.11ac 5 GHz |
+| PCIe0 | 0xa0000000, 2-lane Gen2, PERST GPIO 15 (ACTIVE_HIGH) |
+| PCIe1 | 0x80000000, 1-lane Gen1, PERST GPIO 18 (ACTIVE_HIGH ← was wrong) |
 
 ## Repository Contents
 
 ```
 ├── README.md                  # This file
-├── pcie_analysis.md           # Detailed PCIe analysis (stock vs OpenWrt comparison)
-├── TECHNICAL_ROADMAP.md       # Fix strategy and technical approaches
-├── stock_data/
-│   ├── stock_full_dump.txt    # Comprehensive register/config dump (9714 lines)
-│   ├── stock_devicetree.dts   # Decompiled stock firmware device tree (2490 lines)
-│   ├── stock_dtb.bin          # Raw stock firmware DTB binary
-│   ├── art_full.bin           # WiFi calibration data (ART partition, 1MB)
-│   ├── bdata.bin              # Board data partition (512KB)
-│   ├── extra_info.txt         # dmesg, lsmod, clock tree, GPIO, regulator info
-│   └── collect_all.sh         # Data collection script used on stock firmware
-└── patches/                   # (future) OpenWrt patches
+├── CONCLUSION.md              # Final summary + upstream PR info
+├── VALIDATION_REPORT.md       # 3-phy hardware validation report
+├── pcie_analysis.md           # Detailed PCIe stock-vs-OpenWrt analysis
+├── TECHNICAL_ROADMAP.md       # Fix strategy & investigation notes
+├── build.sh                   # Local OpenWrt build helper
+├── setup_dev.sh               # Dev environment bootstrap
+├── debug_router.sh            # Router debug helpers (SSH/dmesg/PARF)
+├── patches/                   # Early local patch history
+├── upstream_patch/
+│   ├── 0001-qualcommax-ipq50xx-ax6000-enable-pcie1-for-QCA9887.patch  # Final submitted patch
+│   ├── SUBMISSION_CHECKLIST.md                                        # OpenWrt submission rules
+│   ├── dtb_pre.dts / dtb_post.dts / dtb_diff.txt                      # DTB A/B proof
+└── stock_data/
+    ├── stock_full_dump.txt    # Comprehensive register/config dump
+    ├── stock_devicetree.dts   # Decompiled stock firmware device tree
+    ├── extra_info.txt         # dmesg, lsmod, clock tree, GPIO, regulators
+    └── collect_all.sh         # Stock-firmware data-collection script
 ```
+
+## Build & Test
+
+```bash
+# Build
+cd ~/fun/openwrt
+make -j6 V=s 2>&1 | tee /tmp/openwrt-build.log
+
+# Flash
+SRC=$(ls bin/targets/qualcommax/ipq50xx/*sysupgrade*.ubi | head -1)
+scp -O "$SRC" root@192.168.1.1:/tmp/
+ssh root@192.168.1.1 "setsid sh -c 'sysupgrade -n /tmp/$(basename $SRC) < /dev/null >/dev/null 2>&1 &'"
+```
+
+## Upstream PR
+
+- **PR:** https://github.com/openwrt/openwrt/pull/23047
+- **Title:** `qualcommax: ipq50xx: ax6000: enable pcie1 for QCA9887`
+- **Author:** `chinawrj <chinawrj@gmail.com>` (DCO signed-off)
+- **Branch:** [`chinawrj/openwrt-upstream:ax6000-pcie1-qca9887`](https://github.com/chinawrj/openwrt-upstream/tree/ax6000-pcie1-qca9887)
+- **Lint:** `scripts/checkpatch.pl --no-tree` → 0 errors, 0 warnings, 0 checks
 
 ## Key Findings
 
-1. **Both PCIe links work under stock firmware** — QCA9887 link is up and functional
-2. **PERST GPIO polarity mismatch** — Stock uses GPIO 15 as active-HIGH for x2 controller, OpenWrt DTS uses active-LOW
-3. **PHY register init matches** — Upstream driver programs same values as stock firmware
-4. **CDR_CTRL_REG_7 (0x98) not programmed** — Different between x1 (0x1A8) and x2 (0x008), upstream driver skips it
-5. **DTS typo** — OpenWrt has `status = "disbled"` (missing 'a')
+1. **PERST GPIO polarity** in OpenWrt DTS must match the stock DTB flag byte exactly (`0x00 = GPIO_ACTIVE_HIGH`, `0x01 = GPIO_ACTIVE_LOW`). Stock used `ACTIVE_HIGH` on GPIO 18; OpenWrt had `ACTIVE_LOW`, holding the card in reset — this was the entire root cause.
+2. The upstream OpenWrt tree moved per-device DTS files to `target/linux/qualcommax/dts/<device>.dts` (commit `a66e30631c`); any older patches under `.../files/arch/arm64/boot/dts/qcom/` no longer apply.
+3. QCA9887 calibration lives in the `0:art` MTD partition at offset `0x4d000`, length `0x844`, exposed as nvmem cell `caldata_qca9889` (already wired up upstream).
 
-## OpenWrt Version
-
-- OpenWrt 25.12.2 stable (2026-03-26)
-- Target: qualcommax/ipq50xx
-- Kernel: 6.12
-
-## Stock Firmware
+## Stock Firmware Reference
 
 - Version: 1.0.122
 - Kernel: 4.4.60 (aarch64)
-- DT compatible: "qcom,ipq5018-mp03.1", "qcom,ipq5018"
+- DT compatible: `qcom,ipq5018-mp03.1`, `qcom,ipq5018`
+
+## OpenWrt Target
+
+- `qualcommax/ipq50xx`
+- Device `xiaomi_ax6000`
+- Tested on main @ `379c7fc3a0` (kernel 6.12.80)
+
+## License
+
+Patch and documentation in this repo follow the OpenWrt project license (GPL-2.0). Stock firmware data is included under fair-use for interoperability analysis only.

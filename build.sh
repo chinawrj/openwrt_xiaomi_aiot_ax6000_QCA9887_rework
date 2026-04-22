@@ -1,5 +1,5 @@
 #!/bin/bash
-# Development helper: build and deploy to router at 192.168.12.1
+# Development helper: build and deploy to router at 192.168.1.1
 # Usage:
 #   ./build.sh full      - Full image build
 #   ./build.sh kernel    - Rebuild kernel + modules only
@@ -10,7 +10,7 @@
 set -e
 
 OPENWRT_DIR="${OPENWRT_DIR:-$HOME/fun/openwrt}"
-ROUTER_IP="${ROUTER_IP:-192.168.12.1}"
+ROUTER_IP="${ROUTER_IP:-192.168.1.1}"
 J="${J:-$(nproc)}"
 SSH="ssh -o ConnectTimeout=10 root@$ROUTER_IP"
 TARGET_DIR="$OPENWRT_DIR/bin/targets/qualcommax/ipq50xx"

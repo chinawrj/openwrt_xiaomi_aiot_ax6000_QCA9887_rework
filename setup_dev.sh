@@ -6,7 +6,7 @@ set -e
 OPENWRT_TAG="v25.12.2"
 OPENWRT_DIR="$HOME/fun/openwrt"
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
-ROUTER_IP="${ROUTER_IP:-192.168.12.1}"
+ROUTER_IP="${ROUTER_IP:-192.168.1.1}"
 
 echo "==> OpenWrt source dir: $OPENWRT_DIR"
 echo "==> Target tag: $OPENWRT_TAG"

@@ -1,6 +1,6 @@
-From 379c7fc3a08173563d4e083197bbfe0830733fa2 Mon Sep 17 00:00:00 2001
-From: YOUR NAME <your.email@example.com>
-Date: Wed, 22 Apr 2026 18:37:13 +0800
+From 73cb6cfd7fe6925bc6f108ae0bf79c4d98877347 Mon Sep 17 00:00:00 2001
+From: chinawrj <chinawrj@gmail.com>
+Date: Wed, 22 Apr 2026 20:41:59 +0800
 Subject: [PATCH] qualcommax: ipq50xx: ax6000: enable pcie1 for QCA9887
 
 The Xiaomi AX6000 has three radios:
@@ -23,7 +23,7 @@ All three radios enumerate, load firmware and beacon
 successfully; scan, association and data traffic confirmed on
 each radio.
 
-Signed-off-by: YOUR NAME <your.email@example.com>
+Signed-off-by: chinawrj <chinawrj@gmail.com>
 ---
  target/linux/qualcommax/dts/ipq5018-ax6000.dts | 8 ++------
  1 file changed, 2 insertions(+), 6 deletions(-)

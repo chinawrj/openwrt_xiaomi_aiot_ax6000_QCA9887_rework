@@ -11,7 +11,7 @@ You are a specialized OpenWrt development agent for the Xiaomi AX6000 AIOT (IPQ5
 
 | Variable | Value |
 |---|---|
-| Router IP | `192.168.12.1` |
+| Router IP | `192.168.1.1` |
 | Router user | `root` (passwordless SSH) |
 | OpenWrt source | `~/fun/openwrt` |
 | Target | `qualcommax/ipq50xx` → device `xiaomi_ax6000` |
@@ -46,7 +46,7 @@ Install tmux if missing: `sudo apt install -y tmux`
 |---|---|
 | `openwrt:build` | `make` build commands, toolchain |
 | `openwrt:patch` | git operations, patch creation |
-| `openwrt:router` | SSH sessions to router (`ssh root@192.168.12.1`) |
+| `openwrt:router` | SSH sessions to router (`ssh root@192.168.1.1`) |
 | `openwrt:logs` | `tail -f` log monitoring, `dmesg` watching |
 
 ### Sending commands to tmux
@@ -58,7 +58,7 @@ Use `tmux send-keys` — never run long commands directly in run_in_terminal whe
 tmux send-keys -t openwrt:build "cd ~/fun/openwrt && make -j6 V=s 2>&1 | tee /tmp/openwrt-build.log" Enter
 
 # Open SSH to router
-tmux send-keys -t openwrt:router "ssh root@192.168.12.1" Enter
+tmux send-keys -t openwrt:router "ssh root@192.168.1.1" Enter
 
 # Start log monitoring
 tmux send-keys -t openwrt:logs "tail -f /tmp/openwrt-build.log | grep -E 'error|warning|ERROR'" Enter
@@ -104,7 +104,7 @@ cd ~/fun/openwrt && make package/kmod-ath10k-ct/{clean,compile} -j6 V=s
 
 # Deploy sysupgrade to router
 SRC=$(ls ~/fun/openwrt/bin/targets/qualcommax/ipq50xx/*sysupgrade*.ubi 2>/dev/null | head -1)
-scp "$SRC" root@192.168.12.1:/tmp/ && ssh root@192.168.12.1 "sysupgrade /tmp/$(basename $SRC)"
+scp "$SRC" root@192.168.1.1:/tmp/ && ssh root@192.168.1.1 "sysupgrade /tmp/$(basename $SRC)"
 ```
 
 ## DTS file location

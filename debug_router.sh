@@ -1,9 +1,9 @@
 #!/bin/bash
 # Quick debug script: runs on the router directly to collect PCIe state
-# Usage: ssh root@192.168.12.1 'sh -s' < debug_router.sh
+# Usage: ssh root@192.168.1.1 'sh -s' < debug_router.sh
 #    or: ./build.sh dmesg | parf | clk
 
-ROUTER_IP="${1:-192.168.12.1}"
+ROUTER_IP="${1:-192.168.1.1}"
 SSH="ssh -o ConnectTimeout=10 root@$ROUTER_IP"
 
 echo "===== Router: PCIe Debug Snapshot ====="
