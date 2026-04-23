@@ -1,6 +1,8 @@
 # OpenWrt Xiaomi AX6000 (AIOT) — QCA9887 PCIe Rework
 
-**Status:** ✅ **DONE — upstream PR [openwrt/openwrt#23047](https://github.com/openwrt/openwrt/pull/23047) open, all 3 radios validated.**
+**Status:** 🎉 **MERGED UPSTREAM — [openwrt/openwrt#23047](https://github.com/openwrt/openwrt/pull/23047) merged by @robimarko as commit [`6cbb072b57e9`](https://github.com/openwrt/openwrt/commit/6cbb072b57e9d72d07097902d975f8a13b768e72) on `main`. Project complete.**
+
+> Backport to the `openwrt-25.12` release branch was requested by @georgemoussalem (the original AX6000 submitter) and is pending at @robimarko. Once merged there, users on stable OpenWrt 25.12.x will get 3-radio support for the Xiaomi AX6000 AIOT out of the box.
 
 ## Project Goal
 
@@ -99,11 +101,20 @@ ssh root@192.168.1.1 "setsid sh -c 'sysupgrade -n /tmp/$(basename $SRC) < /dev/n
 
 ## Upstream PR
 
-- **PR:** https://github.com/openwrt/openwrt/pull/23047
+- **PR:** https://github.com/openwrt/openwrt/pull/23047 — **MERGED** (closed)
 - **Title:** `qualcommax: ipq50xx: ax6000: enable pcie1 for QCA9887`
 - **Author:** `chinawrj <chinawrj@gmail.com>` (DCO signed-off)
 - **Branch:** [`chinawrj/openwrt-upstream:ax6000-pcie1-qca9887`](https://github.com/chinawrj/openwrt-upstream/tree/ax6000-pcie1-qca9887)
+- **Merge commit on `main`:** [`6cbb072b57e9d72d07097902d975f8a13b768e72`](https://github.com/openwrt/openwrt/commit/6cbb072b57e9d72d07097902d975f8a13b768e72)
+- **Merged by:** @robimarko (qualcommax maintainer)
 - **Lint:** `scripts/checkpatch.pl --no-tree` → 0 errors, 0 warnings, 0 checks
+- **Backport request (25.12):** open, acknowledged by maintainers
+
+### Review feedback
+
+- @georgemoussalem (original AX6000 PR author): *“Great find, I didn’t have the device when I submitted the initial PR, thanks! This should also be backported to 25.12.”*
+- @sund00bie: *“Wow. Amazing work!”*
+- @robimarko: merged after review, no change requests.
 
 ## Key Findings
 
